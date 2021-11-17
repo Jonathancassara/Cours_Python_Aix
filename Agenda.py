@@ -29,21 +29,27 @@ while True:
     for entry in options:
         print (entry, menu[entry])
     selection = input("Merci de faire votre choix :")
+    # 1.Importer un annuaire
     if selection == '1':
         print("Importer")
         logging.info('L\'utilisateur a fait le choix 1.Importer')
+    # 2.Chercher un utilisateur et afficher ses informations
     elif selection == '2':
         print("Chercher et Afficher")
-        logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')    
+        logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
+    # 3.Ajouter un utilisateur    
     elif selection == '3':
         print("Ajouter")
         logging.info('L\'utilisateur a fait le choix 3.Ajouter')  
+    # 4.Exporter l’annuaire
     elif selection == '4':
         print("Expoter")
-        logging.info('L\'utilisateur a fait le choix 4.Exporter')  
+        logging.info('L\'utilisateur a fait le choix 4.Exporter')
+    # 5.Quitter
     elif selection == '5':
         logging.info('L\'utilisateur a quitté l\'Agenda')
         break
+    # Mauvais Choix
     else:
         print("Choix impossible!")
         logging.error('L\'utilisateur a fait un mauvais choix')
