@@ -3,6 +3,7 @@
 # Devoir 1 Agenda
 # Auteur : Jonathan CASSARA-GOHIER
 # Version 0.1  17/11/2021
+# copie et utilisation non autorisé
 
 import logging
 from datetime import datetime
