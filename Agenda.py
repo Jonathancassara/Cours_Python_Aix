@@ -1,10 +1,14 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # Devoir 1 Agenda
 # Auteur : Jonathan CASSARA-GOHIER
 # Version 0.1  17/11/2021
 
 import logging
 from datetime import datetime
+import csv
+from pathlib import Path
+
 
 #Logging
 #Filename Dest %/logfilename.log
@@ -12,6 +16,20 @@ from datetime import datetime
 # datefmt Format Jours Mois Année , Heure Minute Seconde
 logging.basicConfig(filename="logfilename.log", encoding='utf-8', level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
 
+# Création et vérification du fichier CSV dans le répertoire
+try:
+    file = open('Agenda.csv')
+    print("Fichier Agenda.csv est présent")
+    file.close()
+except FileNotFoundError:
+    print("Fichier Absent")
+    print("Création du Fichier Agenda.Csv")
+    with open('Agenda.csv','w',newline='') as fichiercsv:
+            writer=csv.writer(fichiercsv)
+            writer.writerow(['Nom', 'Prénom', 'Téléphone'])
+    exit
+    
+# Titre
 print('------MENU AGENDA------')
 
 # Menu de L'agenda
