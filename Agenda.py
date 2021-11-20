@@ -19,56 +19,65 @@ logging.basicConfig(filename="logfilename.log", encoding='utf-8', level=logging.
 
 # Création et vérification du fichier CSV dans le répertoire
 try:
-    file = open('Agenda.csv')
-    print("Fichier Agenda.csv est présent")
-    file.close()
-except FileNotFoundError:
-    print("Fichier Absent")
-    print("Création du Fichier Agenda.Csv")
+    with open('Agenda.csv','r') as file:
+        print('\x1b[6;30;42m' + "Fichier Agenda.csv est présent" + '\x1b[0m')
+except IOError:
+    print('\x1b[6;30;41m' + "Fichier Absent" + '\x1b[0m')
+    print('\x1b[0;30;44m' + "Création du Fichier Agenda.Csv" + '\x1b[0m')
     with open('Agenda.csv','w',newline='') as fichiercsv:
             writer=csv.writer(fichiercsv)
             writer.writerow(['Nom', 'Prénom', 'Téléphone'])
     exit
     
 # Titre
-print('------MENU AGENDA------')
+print('\x1b[6;30;47m' + '------MENU AGENDA------' + '\x1b[0m')
 
 # Menu de L'agenda
 menu = {}
-menu['1'] = "Importer un annuaire"
-menu['2'] = "Chercher un utilisateur et afficher ses informations"
-menu['3'] = "Ajouter un utilisateur"
-menu['4'] = "Exporter l’annuaire"
-menu['5'] = "Quitter"
+menu['1'] = '\x1b[6;30;47m' + " Importer un annuaire " + '\x1b[0m'
+menu['2'] = '\x1b[6;30;47m' + " Chercher un utilisateur et afficher ses informations " + '\x1b[0m'
+menu['3'] = '\x1b[6;30;47m' + " Ajouter un utilisateur " + '\x1b[0m'
+menu['4'] = '\x1b[6;30;47m' + " Exporter l’annuaire " + '\x1b[0m'
+menu['5'] = '\x1b[6;30;47m' + " Quitter " + '\x1b[0m'
+
+def options():
+    for key in menu.keys():
+        print (key, '--', menu[key] )
+
+def option1():
+    print( '\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
+    logging.info('REUSSI')
 
 
-while True:
-    options = menu.keys()
-    
-    for entry in options:
-        print (entry, menu[entry])
-    selection = input("Merci de faire votre choix :")
-    # 1.Importer un annuaire
-    if selection == '1':
-        print("Importer")
-        logging.info('L\'utilisateur a fait le choix 1.Importer')
-    # 2.Chercher un utilisateur et afficher ses informations
-    elif selection == '2':
-        print("Chercher et Afficher")
-        logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
-    # 3.Ajouter un utilisateur    
-    elif selection == '3':
-        print("Ajouter")
-        logging.info('L\'utilisateur a fait le choix 3.Ajouter')  
-    # 4.Exporter l’annuaire
-    elif selection == '4':
-        print("Expoter")
-        logging.info('L\'utilisateur a fait le choix 4.Exporter')
-    # 5.Quitter
-    elif selection == '5':
-        logging.info('L\'utilisateur a quitté l\'Agenda')
-        break
-    # Mauvais Choix
-    else:
-        print("Choix impossible!")
-        logging.error('L\'utilisateur a fait un mauvais choix')
+if __name__=='__main__':
+    while True:
+        options = menu.keys()
+        #Sélection menu
+        for entry in options:
+            print (entry, menu[entry])
+        selection = input('\x1b[6;30;46m' + "Merci de faire votre choix :" + '\x1b[0m')
+        # 1.Importer un annuaire
+        if selection == '1':
+            print("Importer")
+            logging.info('L\'utilisateur a fait le choix 1.Importer')
+        # 2.Chercher un utilisateur et afficher ses informations
+        elif selection == '2':
+            print("Chercher et Afficher")
+            logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
+        # 3.Ajouter un utilisateur    
+        elif selection == '3':
+            print("Ajouter")
+            logging.info('L\'utilisateur a fait le choix 3.Ajouter')  
+        # 4.Exporter l’annuaire
+        elif selection == '4':
+            print("Expoter")
+            logging.info('L\'utilisateur a fait le choix 4.Exporter')
+        # 5.Quitter
+        elif selection == '5':
+            logging.info('L\'utilisateur a quitté l\'Agenda')
+            break
+        # Mauvais Choix
+        else:
+            print("Choix impossible! Merci de choisir un chiffre entre 1 et 5.0")
+            logging.error('L\'utilisateur a fait un mauvais choix')
+        
