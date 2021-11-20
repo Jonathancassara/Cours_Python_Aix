@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 # Devoir 1 Agenda
 # Auteur : Jonathan CASSARA-GOHIER
-# Version 0.1  17/11/2021
+# Version 0.2  20/11/2021
 # copie et utilisation non autorisé
 
 import logging
 from datetime import datetime
 import csv
 from pathlib import Path
-
+import os
 
 #Logging
 #Filename Dest %/logfilename.log
@@ -40,13 +40,40 @@ menu['3'] = '\x1b[6;30;47m' + " Ajouter un utilisateur " + '\x1b[0m'
 menu['4'] = '\x1b[6;30;47m' + " Exporter l’annuaire " + '\x1b[0m'
 menu['5'] = '\x1b[6;30;47m' + " Quitter " + '\x1b[0m'
 
+#Définition des options
 def options():
     for key in menu.keys():
         print (key, '--', menu[key] )
-
+        
+#Défintion pour le choix Importer un annuaire
 def option1():
-    print( '\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
+    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
     logging.info('REUSSI')
+
+#Défintion pour le choix Chercher un utilisateur et afficher ses informations
+def option2():
+    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
+    logging.info('REUSSI')
+
+#Défintion pour le choix Ajouter un utilisateur
+def option3():
+    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
+    logging.info('REUSSI')
+
+#Défintion pour le choix Exporter l’annuaire
+def option4():
+    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
+    logging.info('REUSSI')
+
+#Fermeture du script avec suppression du fichier Agenda.csv
+def option5():
+    print('\x1b[6;37;41m' + "Suppression Agenda.csv" + '\x1b[0m')
+    if os.path.exists('Agenda.csv'):
+        os.remove('Agenda.csv')
+        logging.info('suppression réussi du fichier Agenda.csv')
+    else:
+        print("Impossible de supprimer le fichier car il n'existe pas")
+        logging.ERROR("Impossible de supprimer le fichier car il n'existe pas")
 
 
 if __name__=='__main__':
@@ -58,26 +85,33 @@ if __name__=='__main__':
         selection = input('\x1b[6;30;46m' + "Merci de faire votre choix :" + '\x1b[0m')
         # 1.Importer un annuaire
         if selection == '1':
+            option1()
             print("Importer")
             logging.info('L\'utilisateur a fait le choix 1.Importer')
         # 2.Chercher un utilisateur et afficher ses informations
         elif selection == '2':
+            option2()
             print("Chercher et Afficher")
             logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
         # 3.Ajouter un utilisateur    
         elif selection == '3':
+            option3()
             print("Ajouter")
             logging.info('L\'utilisateur a fait le choix 3.Ajouter')  
         # 4.Exporter l’annuaire
         elif selection == '4':
+            option4()
             print("Expoter")
             logging.info('L\'utilisateur a fait le choix 4.Exporter')
         # 5.Quitter
         elif selection == '5':
             logging.info('L\'utilisateur a quitté l\'Agenda')
+            option5()
             break
         # Mauvais Choix
         else:
             print("Choix impossible! Merci de choisir un chiffre entre 1 et 5.0")
             logging.error('L\'utilisateur a fait un mauvais choix')
         
+
+    
