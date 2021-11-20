@@ -27,6 +27,7 @@ except IOError:
     with open('Agenda.csv','w',newline='') as fichiercsv:
             writer=csv.writer(fichiercsv)
             writer.writerow(['Nom', 'Prénom', 'Téléphone'])
+            writer.writerow(['Doe', 'John', '00.00.00.00.00'])
     exit
     
 # Titre
@@ -47,8 +48,27 @@ def options():
         
 #Défintion pour le choix Importer un annuaire
 def option1():
-    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-    logging.info('REUSSI')
+    # Demande à l'user le nom du fichier CSV à importer.
+    importation = input("Quel est le nom de votre fichier annuaire ? " +'\x1b[6;37;41m' + " Uniquement au format CSV " + '\x1b[0m')
+    os.path.isfile(importation)
+    file_extension = os.path.splitext(importation)[1]
+    if file_extension.lower() == ".csv":
+        try:    
+            with open(importation , 'r') as file:
+                logging.info('format de fichier correct')
+                print("importation réussi")
+        except IOError:
+                print('\x1b[6;30;41m' + "Fichier Absent" + '\x1b[0m')
+                print('\x1b[0;30;44m' + "Création du Fichier" + importation + '\x1b[0m')
+                with open(importation,'w',newline='') as fichiercsv:
+                    writer=csv.writer(fichiercsv)
+                    writer.writerow(['Nom', 'Prénom', 'Téléphone'])
+    else:
+        if file_extension.lower() != ".csv":
+            logging.error('format de fichier incorrect')
+            print('\x1b[6;30;41m' + "erreur de format de fichier" + '\x1b[0m')
+        
+        
 
 #Défintion pour le choix Chercher un utilisateur et afficher ses informations
 def option2():
@@ -86,7 +106,6 @@ if __name__=='__main__':
         # 1.Importer un annuaire
         if selection == '1':
             option1()
-            print("Importer")
             logging.info('L\'utilisateur a fait le choix 1.Importer')
         # 2.Chercher un utilisateur et afficher ses informations
         elif selection == '2':
