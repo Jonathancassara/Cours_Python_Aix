@@ -2,14 +2,16 @@
 # -*- coding: utf-8 -*-
 # Devoir 1 Agenda
 # Auteur : Jonathan CASSARA-GOHIER
-# Version 0.2  20/11/2021
+# Version 0.3  21/11/2021
 # copie et utilisation non autorisé
 
 import logging
 from datetime import datetime
 import csv
+from csv import reader
 from pathlib import Path
 import os
+import random
 
 #Logging
 #Filename Dest %/logfilename.log
@@ -27,7 +29,7 @@ except IOError:
     with open('Agenda.csv','w',newline='') as fichiercsv:
             writer=csv.writer(fichiercsv)
             writer.writerow(['Nom', 'Prénom', 'Téléphone'])
-            writer.writerow(['Doe', 'John', '00.00.00.00.00'])
+            writer.writerow(['Doe', 'John', '0000000000'])
     exit
     
 # Titre
@@ -71,14 +73,30 @@ def option1():
         
 
 #Défintion pour le choix Chercher un utilisateur et afficher ses informations
-def option2():
-    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-    logging.info('REUSSI')
-
+def option2(importation = 'Agenda.csv'):
+    with open(importation , 'r') as read_obj:
+        csv_reader = reader(read_obj)
+        for row in csv_reader:
+            print('\x1b[6;30;42m' + row[1],'\x1b[6;30;42m' +  row[2],'\x1b[6;30;42m' +  row[3]+ '\x1b[0m')
+            logging.info('Affichage des données')
+            
 #Défintion pour le choix Ajouter un utilisateur
-def option3():
-    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-    logging.info('REUSSI')
+def option3(importation = 'Agenda.csv'):
+        Nom = input("Entrez Le Nom : ")
+        Prenom = input("Entrez Le Prenom : ")
+        # Vérification si l 'user entre bien que des chiffres pour le téléphone
+        while True:
+            try:
+                Telephone = int(input("Entrez Le Numéro de Téléphone : "))
+                logging.info("Ajout d'un utilisateur")
+            except:
+                print("Merci de saisir des chiffres uniquement")
+            break  
+        with open(importation, 'a',newline='') as fichiercsv:
+                writer=csv.writer(fichiercsv)
+                writer.writerow([Nom, Prenom, int(Telephone)])    
+        
+            
 
 #Défintion pour le choix Exporter l’annuaire
 def option4():
