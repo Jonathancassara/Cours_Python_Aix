@@ -4,6 +4,9 @@
 # Auteur : Jonathan CASSARA-GOHIER
 # Version 1.  22/11/2021
 # copie et utilisation non autorisé
+#
+# Agenda V2.py
+#
 
 import logging
 from datetime import datetime
@@ -12,7 +15,7 @@ from csv import reader
 from pathlib import Path
 import os
 import random
-
+from menu import *
 #Logging
 #Filename Dest %/logfilename.log
 #encoding UTF-8 (Latin EUROPE)
@@ -30,8 +33,14 @@ menu['3'] = '\x1b[6;30;47m' + " Ajouter un utilisateur " + '\x1b[0m'
 menu['4'] = '\x1b[6;30;47m' + " Exporter l’annuaire " + '\x1b[0m'
 menu['5'] = '\x1b[6;30;47m' + " Quitter " + '\x1b[0m'
 
-      
+#Définition des options
+def options():
+    for key in menu.keys():
+        print (key, '--', menu[key] )
+        
 
+
+#-------Menu Selection--------
 while True:
         options = menu.keys()
         #Sélection menu
@@ -66,37 +75,4 @@ while True:
         else:
             print("Choix impossible! Merci de choisir un chiffre entre 1 et 5.0")
             logging.error('L\'utilisateur a fait un mauvais choix')
-        
-#Définition des options
-def options():
-    for key in menu.keys():
-        print (key, '--', menu[key] )
 
-#Défintion pour le choix Importer un annuaire
-def option1():
-    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-    logging.info('REUSSI')
-        
-        
-
-#Défintion pour le choix Chercher un utilisateur et afficher ses informations
-def option2(importation = 'Agenda.csv'):
-    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-    logging.info('REUSSI')
-            
-#Défintion pour le choix Ajouter un utilisateur
-def option3(importation = 'Agenda.csv'):
-    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-    logging.info('REUSSI')    
-            
-        
-            
-
-#Défintion pour le choix Exporter l’annuaire
-def option4():
-    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-    logging.info('REUSSI')
-#Fermeture du script avec suppression du fichier Agenda.csv
-def option5():
-    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-    logging.info('REUSSI')
