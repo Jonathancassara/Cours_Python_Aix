@@ -92,9 +92,17 @@ def option3(importation = 'Agenda.csv'):
             except:
                 print("Merci de saisir des chiffres uniquement")
             break  
-        with open(importation, 'a',newline='') as fichiercsv:
-                writer=csv.writer(fichiercsv)
-                writer.writerow([Nom, Prenom, int(Telephone)])    
+        #Vérification si déjà présent
+        while True:
+            try:
+                with open(importation, 'a',newline='') as fichiercsv:
+                    writer=csv.writer(fichiercsv)
+                    writer.writerow([Nom, Prenom, int(Telephone)])
+            except:
+                print("Le numéro exite déjà")
+                print("Voulez-vous le modifier ?")
+            break
+            
         
             
 
