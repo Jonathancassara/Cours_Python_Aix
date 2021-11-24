@@ -15,7 +15,9 @@ from csv import reader
 from pathlib import Path
 import os
 import random
-from menu import *
+import menu
+from menu import Fichiercsv
+
 #Logging
 #Filename Dest %/logfilename.log
 #encoding UTF-8 (Latin EUROPE)
@@ -24,6 +26,8 @@ logging.basicConfig(filename="logfilename.log", encoding='utf-8', level=logging.
 
 # Titre
 print('\x1b[6;30;47m' + '------MENU AGENDA------' + '\x1b[0m')
+
+
 
 # Menu de L'agenda
 menu = {}
@@ -49,27 +53,26 @@ while True:
         selection = input('\x1b[6;30;46m' + "Merci de faire votre choix :" + '\x1b[0m')
         # 1.Importer un annuaire
         if selection == '1':
-            option1()
+            Fichiercsv.option1()
             logging.info('L\'utilisateur a fait le choix 1.Importer')
         # 2.Chercher un utilisateur et afficher ses informations
         elif selection == '2':
-            option2()
-            print("Chercher et Afficher")
+            Fichiercsv.option2()
             logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
         # 3.Ajouter un utilisateur    
         elif selection == '3':
-            option3()
+            Fichiercsv.option3()
             print("Ajouter")
             logging.info('L\'utilisateur a fait le choix 3.Ajouter')  
         # 4.Exporter l’annuaire
         elif selection == '4':
-            option4()
+            Fichiercsv.option4()
             print("Expoter")
             logging.info('L\'utilisateur a fait le choix 4.Exporter')
         # 5.Quitter
         elif selection == '5':
             logging.info('L\'utilisateur a quitté l\'Agenda')
-            option5()
+            Fichiercsv.option5()
             break
         # Mauvais Choix
         else:
