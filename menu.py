@@ -22,9 +22,11 @@ import random
 # datefmt Format Jours Mois Année , Heure Minute Seconde
 logging.basicConfig(filename="logfilename.log", encoding='utf-8', level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
 
+
+
 class Fichiercsv:
     #Défintion pour le choix Importer un annuaire
-    def option1():
+    def option1(fichier_csv):
         # Demande à l'user le nom du fichier CSV à importer.
         fichier_csv = input("Quel est le nom de votre fichier annuaire ? " +'\x1b[6;37;41m' + " Uniquement au format CSV " + '\x1b[0m')
         os.path.isfile(fichier_csv)
@@ -61,25 +63,20 @@ class Fichiercsv:
 
 
     #Défintion pour le choix Chercher un utilisateur et afficher ses informations
-    def option2(fichier_csv ):
-        with open(fichier_csv , 'r') as read_obj:
-            fichier_csv  = reader(read_obj)
-            for row in fichier_csv :
-                print('\x1b[6;30;42m' + row[1],'\x1b[6;30;42m' +  row[2],'\x1b[6;30;42m' +  row[3]+ '\x1b[0m')
-                logging.info('Affichage des données')
-                logging.info('REUSSI')
+def option2():
+    print(Fichiercsv)  
             
-    #Défintion pour le choix Ajouter un utilisateur
-    def option3(importation = 'Agenda.csv'):
-        print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-        logging.info('REUSSI')    
+#Défintion pour le choix Ajouter un utilisateur
+def option3():
+    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
+    logging.info('REUSSI')    
             
-    #Défintion pour le choix Exporter l’annuaire
-    def option4():
-        print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-        logging.info('REUSSI')
+#Défintion pour le choix Exporter l’annuaire
+def option4():
+    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
+    logging.info('REUSSI')
 
-    #Fermeture du script avec suppression du fichier Agenda.csv
-    def option5():
-        print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
-        logging.info('REUSSI')      
+#Fermeture du script avec suppression du fichier Agenda.csv
+def option5():
+    print('\x1b[6;37;41m' + "REUSSI" + '\x1b[0m')
+    logging.info('REUSSI')      
