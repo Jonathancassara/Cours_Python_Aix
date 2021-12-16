@@ -15,14 +15,15 @@ from csv import reader
 from pathlib import Path
 import os
 import random
-import Menu
 
-#Logging
-#Filename Dest %/logfilename.log
-#encoding UTF-8 (Latin EUROPE)
+
+
+# Logging
+# Filename Dest %/logfilename.log
+# encoding UTF-8 (Latin EUROPE)
 # datefmt Format Jours Mois Année , Heure Minute Seconde
 logging.basicConfig(filename="logfilename.log", encoding='utf-8', level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
-logging.basicConfig(filename="logfilename.log", encoding='utf-8', level=logging.ERROR, format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+
 # Titre
 print('\x1b[6;30;47m' + '------MENU AGENDA------' + '\x1b[0m')
 
@@ -34,26 +35,54 @@ menu['3'] = '\x1b[6;30;47m' + " Ajouter un utilisateur " + '\x1b[0m'
 menu['4'] = '\x1b[6;30;47m' + " Exporter l’annuaire " + '\x1b[0m'
 menu['0'] = '\x1b[6;30;47m' + " Quitter " + '\x1b[0m'
 
-#Définition des options
+# Définition des options
+
+
 def options():
     for key in menu.keys():
-        print (key, '--', menu[key] )
-        
+        print(key, '--', menu[key])
 
-#-------Menu Selection--------
+
+# -------Menu Selection--------
 while True:
         options = menu.keys()
-        #Sélection menu
+        # Sélection menu
         for entry in options:
-            print (entry, menu[entry])
+            print(entry, menu[entry])
         selection = input('\x1b[6;30;46m' + "Merci de faire votre choix :" + '\x1b[0m')
         # 1.Importer un annuaire
         if selection == '1':
-            Menu.option1()
+            file_name = input("Quel est le nom de votre fichier annuaire ? " +'\x1b[6;37;41m' + " Uniquement au format CSV " + '\x1b[0m')
+            os.path.isfile(file_name)
+            file_extension = os.path.splitext(file_name)[1]
+            if file_extension.lower() == ".csv":
+                try:    
+                    with open(file_name , 'r') as file:
+                        logging.info('format de fichier correct')
+                        print("importation réussi")
+                except IOError:
+                        print('\x1b[6;30;41m' + "Fichier Absent" + '\x1b[0m')
+                        print('\x1b[0;30;44m' + "Création du Fichier" + file_name + '\x1b[0m')
+                        with open(file_name,'w',newline='') as fichiercsv:
+                            writer=csv.writer(fichiercsv)
+                            writer.writerow(['Nom', 'Prénom', 'Téléphone'])
+                            logging.info('création du fichier')
+            else:
+                if file_extension.lower() != ".csv":
+                    logging.info('format de fichier incorrect')
+                    print('\x1b[6;30;41m' + "erreur de format de fichier" + '\x1b[0m')
+            
             logging.info('L\'utilisateur a fait le choix 1.Importer')
+            
         # 2.Chercher un utilisateur et afficher ses informations
         elif selection == '2':
-            
+            def read_txt(file_name):
+                file = open(file_name, "r")
+                for row in file:
+                    print(row)
+                file.close()
+            print(read_txt(file_name))
+                                        
             logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
         # 3.Ajouter un utilisateur    
         elif selection == '3':
@@ -66,7 +95,9 @@ while True:
             logging.info('L\'utilisateur a fait le choix 4.Exporter')
         # 0.Quitter
         elif selection == '0':
-            Menu.option0()
+            
+            print('\x1b[6;37;41m' + "Au Revoir" + '\x1b[0m')
+            logging.info('REUSSI')
             logging.info('L\'utilisateur a quitté l\'Agenda')
             break
         # Mauvais Choix
