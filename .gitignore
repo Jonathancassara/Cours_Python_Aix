@@ -119,3 +119,6 @@ dmypy.json
 *.log
 # txt
 *.txt
+
+Test.py
+Test1.py
