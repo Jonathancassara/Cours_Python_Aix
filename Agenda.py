@@ -11,10 +11,8 @@
 import logging
 from datetime import datetime
 import csv
-from csv import reader
-from pathlib import Path
 import os
-import random
+
 
 
 
@@ -52,6 +50,7 @@ while True:
         selection = input('\x1b[6;30;46m' + "Merci de faire votre choix :" + '\x1b[0m')
         # 1.Importer un annuaire
         if selection == '1':
+            print('\x1b[6;37;41m' +"Pour un Fichier CSV déjà Rempli de Nom : Exemple.csv " + '\x1b[0m')
             file_name = input("Quel est le nom de votre fichier annuaire ? " +'\x1b[6;37;41m' + " Uniquement au format CSV " + '\x1b[0m')
             os.path.isfile(file_name)
             file_extension = os.path.splitext(file_name)[1]
@@ -62,7 +61,7 @@ while True:
                         print("importation réussi")
                 except IOError:
                         print('\x1b[6;30;41m' + "Fichier Absent" + '\x1b[0m')
-                        print('\x1b[0;30;44m' + "Création du Fichier" + file_name + '\x1b[0m')
+                        print('\x1b[0;30;44m' + "Création du Fichier " + file_name + '\x1b[0m')
                         with open(file_name,'w',newline='') as fichiercsv:
                             writer=csv.writer(fichiercsv)
                             writer.writerow(['Nom', 'Prénom', 'Téléphone'])
@@ -78,22 +77,12 @@ while True:
         elif selection == '2':
             logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
             Nom = input("Qui recherchez-vous ? :")
-            
-            if Nom in file_name:
-                csv_file = csv.reader(open(file_name, 'r'))
-                for row in csv_file:
-                    if Nom == row[1]:
-                        #on affiche le ou les résultats de la ligne avec le Nom d'utilisateur
-                        print(row)
-            
-                
-                
-            
-                
-                                        
-            
-            
-            
+            csv_file = csv.reader(open(file_name, 'r'))
+            for row in csv_file:
+                if Nom == row[0] :
+                    #on affiche le ou les résultats de la ligne avec le Nom d'utilisateur
+                    print(row)
+                        
         # 3.Ajouter un utilisateur  
         # je n'ai pas fait le choix de vérifier si le numéro avait bien 10 chiffres comme sur le systeme en France
         # car l'utilisateur peut ajouter un numéro étranger
@@ -120,7 +109,7 @@ while True:
                                     #Si numéro absent , on ajoute
                                     with open(file_name, 'a',newline='') as fichiercsv:
                                         writer=csv.writer(fichiercsv)
-                                        writer.writerow([Nom.strip(), Prenom.strip(), Telephone])
+                                        writer.writerow([Nom.strip().lower(), Prenom.strip().lower(), Telephone])
                             else:
                                 #si l'user tente d'inscrire des caractères autre que des chiffres         
                                 print("Merci de saisir des chiffres uniquement")
