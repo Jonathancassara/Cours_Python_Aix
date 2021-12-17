@@ -78,11 +78,18 @@ while True:
         elif selection == '2':
             logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
             Nom = input("Qui recherchez-vous ? :")
-            csv_file = csv.reader(open(file_name, 'r'))
-            for row in csv_file:
-                if Nom == row[1]:
-                    #on affiche le ou les résultats de la ligne avec le Nom d'utilisateur
-                    print(row)
+            
+            if Nom in file_name:
+                csv_file = csv.reader(open(file_name, 'r'))
+                for row in csv_file:
+                    if Nom == row[1]:
+                        #on affiche le ou les résultats de la ligne avec le Nom d'utilisateur
+                        print(row)
+            
+                
+                
+            
+                
                                         
             
             
