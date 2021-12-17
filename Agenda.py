@@ -76,14 +76,15 @@ while True:
             
         # 2.Chercher un utilisateur et afficher ses informations
         elif selection == '2':
-            def read_txt(file_name):
-                file = open(file_name, "r")
-                for row in file:
-                    print(row)
-                file.close()
-            print(read_txt(file_name))
-                                        
             logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
+            Nom = input("Qui recherchez-vous ? :")
+            csv_file = csv.reader(open(file_name, 'r'))
+            for row in csv_file:
+                if Nom == row[1]:
+                    #on affiche le ou les résultats de la ligne avec le Nom d'utilisateur
+                    print(row)
+                                        
+            
             
             
         # 3.Ajouter un utilisateur  
