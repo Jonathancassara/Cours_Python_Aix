@@ -86,31 +86,73 @@ while True:
             logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
             
             
-        # 3.Ajouter un utilisateur    
+        # 3.Ajouter un utilisateur  
+        # je n'ai pas fait le choix de vérifier si le numéro avait bien 10 chiffres comme sur le systeme en France
+        # car l'utilisateur peut ajouter un numéro étranger
+        # ou vouloir mettre les indicatifs pays devant le numero par exemple 33602030405 ou un numero polonais (9 ou 11 chiffres) 48 500 500 500 48 12 000 000 000   
         elif selection == '3':
+                logging.info('L\'utilisateur a fait le choix 3.Ajouter')
                 Nom = input("Entrez Le Nom : ")
                 Prenom = input("Entrez Le Prenom : ")
-            # Vérification si l 'user entre bien que des chiffres pour le téléphone
-                while True:
-                    try:
-                        Telephone = int(input("Entrez Le Numéro de Téléphone : "))
-                        logging.info("Ajout d'un utilisateur")
-                    except:
+                #Vérifier si la personne existe déjà
+                if Nom and Prenom in open(file_name).read() :
+                    print("La personne est déjà présente")
+                    logging.info('Ajout.la personne existe déjà')
+                    modifier_Telephone = input("modifier le numéro ? [o/N] :")
+                    modifier_Telephone = modifier_Telephone.strip().lower()
+                    #Ajout du numéro de Téléphone
+                    if modifier_Telephone.startswith('o'):
+                            Telephone = input("Quelle est le numéro ? : ")
+                            if Telephone.isdigit(): 
+                            #Vérification si déjà présent
+                                if Telephone in open(file_name).read() :
+                                    print("le numéro existe déjà")
+                                    logging.info('Ajout. la personne et le numéro existe déjà')
+                                else:
+                                    #Si numéro absent , on ajoute
+                                    with open(file_name, 'a',newline='') as fichiercsv:
+                                        writer=csv.writer(fichiercsv)
+                                        writer.writerow([Nom.strip(), Prenom.strip(), Telephone])
+                            else:
+                                #si l'user tente d'inscrire des caractères autre que des chiffres         
+                                print("Merci de saisir des chiffres uniquement")
+                                logging.info('Ajout. la personne et le numéro existe déjà, mais tentative numéro non chiffre')
+                    #Si l'user ne veut pas modifier le numéro on quitte            
+                    elif modifier_Telephone.startswith('n') or modifier_Telephone == '':
+                        print("Aucune modification faite")
+                    else:
+                        #l'user n'a pas répondu par oui ou non
+                        print("Répondez par 'o' ou 'n'")        
+                            
+                else:
+                    Telephone = input("Entrez Le Numéro de Téléphone : ")
+                    # Vérification si l 'user entre bien que des chiffres pour le téléphone
+                    if Telephone.isdigit(): 
+                    #Vérification si déjà présent
+                        if Telephone in open(file_name).read() :
+                            print("le numéro existe déjà")
+                            logging.info('Ajout. la personne n existe pas et le numéro existe déjà')
+                            modifier_Telephone = input("modifier le numéro ? [o/N] :")
+                            modifier_Telephone = modifier_Telephone.strip().lower()
+                            #Ajout du numéro de Téléphone
+                            if modifier_Telephone.startswith('o'):
+                                Telephone = input("Quelle est le numéro ? : ")
+                                with open(file_name, 'a',newline='') as fichiercsv:
+                                    writer=csv.writer(fichiercsv)
+                                    writer.writerow([Nom.strip(), Prenom.strip(), Telephone])
+                                    logging.info('Ajout fait')
+                            elif modifier_Telephone.startswith('n') or modifier_Telephone == '':
+                                print("Aucune modification faite")
+                            else:
+                                print("Répondez par 'o' ou 'n'")
+                        else:
+                            with open(file_name, 'a',newline='') as fichiercsv:
+                                writer=csv.writer(fichiercsv)
+                                writer.writerow([Nom.strip(), Prenom.strip(), Telephone])
+                    else:
+                        #l'user tente de saisir un téléphone sans chiffre         
                         print("Merci de saisir des chiffres uniquement")
-                        logging.info("Erreur dans la saisie de chiffres")
-                    break  
-                #Vérification si déjà présent
-                while True:
-                    try:
-                        with open(file_name, 'a',newline='') as fichiercsv:
-                            writer=csv.writer(fichiercsv)
-                            writer.writerow([Nom, Prenom, int(Telephone)])
-                            logging.info("Ajout fait")
-                    except:
-                        print("Le numéro exite déjà")
-                        print("Voulez-vous le modifier ?")
-                    break
-                logging.info('L\'utilisateur a fait le choix 3.Ajouter')
+                
         # 4.Exporter l’annuaire
         elif selection == '4':
             print("Expoter")
