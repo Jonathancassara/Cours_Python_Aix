@@ -84,15 +84,38 @@ while True:
             print(read_txt(file_name))
                                         
             logging.info('L\'utilisateur a fait le choix 2.Chercher et Afficher')
+            
+            
         # 3.Ajouter un utilisateur    
         elif selection == '3':
-            
-            print("Ajouter")
-            logging.info('L\'utilisateur a fait le choix 3.Ajouter')  
+                Nom = input("Entrez Le Nom : ")
+                Prenom = input("Entrez Le Prenom : ")
+            # Vérification si l 'user entre bien que des chiffres pour le téléphone
+                while True:
+                    try:
+                        Telephone = int(input("Entrez Le Numéro de Téléphone : "))
+                        logging.info("Ajout d'un utilisateur")
+                    except:
+                        print("Merci de saisir des chiffres uniquement")
+                        logging.info("Erreur dans la saisie de chiffres")
+                    break  
+                #Vérification si déjà présent
+                while True:
+                    try:
+                        with open(file_name, 'a',newline='') as fichiercsv:
+                            writer=csv.writer(fichiercsv)
+                            writer.writerow([Nom, Prenom, int(Telephone)])
+                            logging.info("Ajout fait")
+                    except:
+                        print("Le numéro exite déjà")
+                        print("Voulez-vous le modifier ?")
+                    break
+                logging.info('L\'utilisateur a fait le choix 3.Ajouter')
         # 4.Exporter l’annuaire
         elif selection == '4':
             print("Expoter")
             logging.info('L\'utilisateur a fait le choix 4.Exporter')
+            
         # 0.Quitter
         elif selection == '0':
             
