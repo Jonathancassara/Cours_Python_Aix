@@ -152,8 +152,19 @@ while True:
                 
         # 4.Exporter l’annuaire
         elif selection == '4':
-            print("Expoter")
             logging.info('L\'utilisateur a fait le choix 4.Exporter')
+            print('\x1b[6;37;41m' + " Uniquement au format CSV " + '\x1b[0m') 
+            outputfile = input("Nom du fichier ? : ")
+            os.path.isfile(outputfile)
+            file_extension = os.path.splitext(outputfile)[1]
+            if file_extension.lower() == ".csv":
+                logging.info('format de fichier correct')
+                writer = csv.writer(open(outputfile, "w"), quoting = csv.QUOTE_NONE, escapechar = '\\')
+                reader = csv.reader(open(file_name, "r"), skipinitialspace = True)
+                writer.writerows(reader)    
+            elif file_extension.lower() != ".csv":
+                logging.info('format de fichier incorrect')
+                print('\x1b[6;30;41m' + "erreur de format de fichier" + '\x1b[0m')    
             
         # 0.Quitter
         elif selection == '0':
