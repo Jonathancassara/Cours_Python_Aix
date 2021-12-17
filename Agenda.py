@@ -54,12 +54,14 @@ while True:
             file_name = input("Quel est le nom de votre fichier annuaire ? " +'\x1b[6;37;41m' + " Uniquement au format CSV " + '\x1b[0m')
             os.path.isfile(file_name)
             file_extension = os.path.splitext(file_name)[1]
+            #vérification du format de fichier
             if file_extension.lower() == ".csv":
                 try:    
                     with open(file_name , 'r') as file:
                         logging.info('format de fichier correct')
                         print("importation réussi")
                 except IOError:
+                    #si aucun fichier présent création du fichier CSV avec une base de tableau NOM,PRENOM,TELEPHONE
                         print('\x1b[6;30;41m' + "Fichier Absent" + '\x1b[0m')
                         print('\x1b[0;30;44m' + "Création du Fichier " + file_name + '\x1b[0m')
                         with open(file_name,'w',newline='') as fichiercsv:
@@ -67,6 +69,7 @@ while True:
                             writer.writerow(['Nom', 'Prénom', 'Téléphone'])
                             logging.info('création du fichier')
             else:
+                #si le fichier n 'est pas un CSV , renvoi vers un message d'erreur
                 if file_extension.lower() != ".csv":
                     logging.info('format de fichier incorrect')
                     print('\x1b[6;30;41m' + "erreur de format de fichier" + '\x1b[0m')
@@ -80,9 +83,11 @@ while True:
             csv_file = csv.reader(open(file_name, 'r'))
             for row in csv_file:
                 if Nom == row[0] :
-                    #on affiche le ou les résultats de la ligne avec le Nom d'utilisateur
-                    print(row)
-                        
+                        #on affiche le ou les résultats de la ligne avec le Nom d'utilisateur
+                        print(row)
+                else:
+                    print("Aucun résultat")
+                    logging.info('Aucun résultat')          
         # 3.Ajouter un utilisateur  
         # je n'ai pas fait le choix de vérifier si le numéro avait bien 10 chiffres comme sur le systeme en France
         # car l'utilisateur peut ajouter un numéro étranger
@@ -138,6 +143,7 @@ while True:
                                     writer=csv.writer(fichiercsv)
                                     writer.writerow([Nom.strip(), Prenom.strip(), Telephone])
                                     logging.info('Ajout fait')
+                            #si le choix est non aucune modification
                             elif modifier_Telephone.startswith('n') or modifier_Telephone == '':
                                 print("Aucune modification faite")
                             else:
@@ -154,18 +160,22 @@ while True:
         elif selection == '4':
             logging.info('L\'utilisateur a fait le choix 4.Exporter')
             print('\x1b[6;37;41m' + " Uniquement au format CSV " + '\x1b[0m') 
+            print(file_name)
             outputfile = input("Nom du fichier ? : ")
             os.path.isfile(outputfile)
             file_extension = os.path.splitext(outputfile)[1]
+            #exporation en CSV , vérification
             if file_extension.lower() == ".csv":
                 logging.info('format de fichier correct')
                 writer = csv.writer(open(outputfile, "w"), quoting = csv.QUOTE_NONE, escapechar = '\\')
                 reader = csv.reader(open(file_name, "r"), skipinitialspace = True)
-                writer.writerows(reader)    
+                writer.writerows(reader)
+                break
+            #si le fichier n est pas un CSV
             elif file_extension.lower() != ".csv":
                 logging.info('format de fichier incorrect')
                 print('\x1b[6;30;41m' + "erreur de format de fichier" + '\x1b[0m')    
-            
+                
         # 0.Quitter
         elif selection == '0':
             
