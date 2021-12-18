@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 # Devoir 1 Agenda
 # Auteur : Jonathan CASSARA-GOHIER
-# Version 1.5 17/12/2021
+# Version 1.8 17/12/2021
 # copie et utilisation non autorisé
-#
+# git@github.com:Jonathancassara/Cours_Python_Aix.git
 # Agenda.py
 #
 
