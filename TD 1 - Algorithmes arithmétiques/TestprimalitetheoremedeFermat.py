@@ -17,4 +17,8 @@ def test_Fermat(n : int, k : int) -> bool:
         return False
     
 def display_Fermat(n : int, k : int) -> None:
-    
+   test_Fermat(n, k)
+   if test_Fermat(n, k) is True:
+       print("premier")
+   elif test_Fermat(n, k) is False:
+       print("non premier")
