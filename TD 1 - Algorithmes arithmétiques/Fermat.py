@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # TD 1 - Algorithmes arithmétiques
 # Auteur : Jonathan CASSARA-GOHIER
-# Version 2 27/12/2021
+# Version 2.1 28/12/2021
 # copie et utilisation non autorisé
 # git@github.com:Jonathancassara/Cours_Python_Aix.git
 
@@ -19,14 +19,13 @@ def test_Fermat(n : int, k: int) -> bool:
     if resultat == 1 and k >= 1 and k < n:
         return True
     # si le résultat est différent de 1 alors n n'est pas Premier
-    else:
-        return False
+    return False
     
 
 def display_Fermat(n: int, k: int) -> None:
     test_Fermat(n,k)
-    if test_Fermat(n,k) == 1:
+    if test_Fermat(n,k) == True:
         print(" le nombre est premier")
-    elif test_Fermat(n,k) != 1:
+    else:
         print("le nombre n'est pas premier")
     
