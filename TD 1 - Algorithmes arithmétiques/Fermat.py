@@ -16,7 +16,7 @@ def test_Fermat(n : int, k: int) -> bool:
     #application du petit theoreme de fermat a^x = a (mod x)
     resultat = (a ** (n - 1)) % n
     #si le résultat vaut 1, on peut rien conclure de façon sure.
-    if resultat == 1:
+    if resultat == 1 and k >= 1 and k < n:
         return True
     # si le résultat est différent de 1 alors n n'est pas Premier
     else:
