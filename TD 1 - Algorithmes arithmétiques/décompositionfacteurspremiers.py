@@ -8,23 +8,3 @@
 #Décomposition en facteurs premiers
 
 #def decompose(n :int) -> List[int]:
-def diviseurs(n):
-    Liste_div=[]
-    for i in range(2,n+1):
-        if n%i==0:
-            Liste_div.append(i)
-    return Liste_div
-
-def premier(k):
-    p=1
-    for i in range(2,k):
-        if k%i==0:
-            p=0
-    return p
-
-def diviseurs_premiers(n):
-    Liste_div_premiers=[]
-    for i in diviseurs(n):
-        if premier(i)==i:
-            Liste_div_premiers.append(i)
-    return Liste_div_premiers
