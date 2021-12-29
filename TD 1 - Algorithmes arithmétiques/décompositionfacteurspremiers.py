@@ -8,18 +8,21 @@
 #Décomposition en facteurs premiers
 
 #def decompose(n :int) -> List[int]:
-def dec(N):
+from typing import List
+
+
+def decompose(n :int) -> List[int]:
     Resultat=[]
     d=2
-    while N%d==0:
+    while n%d==0:
         Resultat.append(d)
-        q=int(N/d)
-        N=q
+        q=int(n/d)
+        n=q
     d=3
-    while d<=N:
-        while N%d==0:
+    while d<=n:
+        while n%d==0:
             Resultat.append(d)
-            q=int(N/d)
-            N=q
+            q=int(n/d)
+            n=q
         d=d+2
     return Resultat
