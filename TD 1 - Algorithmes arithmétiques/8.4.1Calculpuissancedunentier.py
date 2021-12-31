@@ -14,3 +14,8 @@ def pow(x: int, n: int) -> int:
     for i in range(n):
         p = p * x
     print(p)
+    
+# version avec ** exp  
+def pow_2(x: int, n: int) -> int:
+        a = x ** n
+        print(a)
