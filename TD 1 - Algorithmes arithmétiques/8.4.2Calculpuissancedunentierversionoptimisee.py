@@ -9,4 +9,10 @@
 #méthode optimisée
 
 def pow_opt(x: int, n: int) -> int:
-    
+    if n % 2 == 0:
+        a = (x**2)**(n/2)
+        return print(a)
+    else:
+        a = x*x**(n-1)
+        return  print(a)
+
