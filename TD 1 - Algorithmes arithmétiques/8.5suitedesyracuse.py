@@ -7,14 +7,15 @@
 # git@github.com:Jonathancassara/Cours_Python_Aix.git
 #La suite de Syracuse
 
-from typing import List, Sequence
+from typing import List
 
 
 def syracuse(N : int) -> tuple[List[int], List[int]]:
-    Sequence[N]
-    while Sequence[-1] != 1:
-        if Sequence[-1] % 2 == 0:
-            Sequence.append(Sequence[-1] // 2)
-        else:
-            Sequence.append(Sequence[-1] * 3 + 1)
-    return print(syracuse(N))
+    List = [N]
+    if N == 1:
+        return [1]
+    elif N % 2 == 0:
+        List.extend(syracuse(N/2))
+    else:
+        List.extend(syracuse(N*3+1))
+    return List
