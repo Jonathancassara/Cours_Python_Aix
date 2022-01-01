@@ -21,9 +21,11 @@ def pow_opt2(x: int, n: int) -> int:
     if n % 2 == 0:
         x = x**2
         n = n/2
+        result = x ** n
         return print(x**n)
     if n % 2 != 0:
-        result = x * n
+        
         n = n-1
+        result = x**n
         result = result * x
-        return print(result*n)
+        return print(result)
