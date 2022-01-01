@@ -16,3 +16,14 @@ def pow_opt(x: int, n: int) -> int:
         a = x*x**(n-1)
         return  print(a)
 
+def pow_opt2(x: int, n: int) -> int:
+    
+    if n % 2 == 0:
+        x = x**2
+        n = n/2
+        return print(x**n)
+    if n % 2 != 0:
+        result = x * n
+        n = n-1
+        result = result * x
+        return print(result*n)
