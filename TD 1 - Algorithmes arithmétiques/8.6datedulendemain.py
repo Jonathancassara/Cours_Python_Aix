@@ -10,46 +10,33 @@
 Day = int(input("Entrez le jour:"))
 Month = int(input("Entrez le mois:"))
 Year = int(input("Entrez l'année:"))
-def bisextile():
-    if (Day%4 == 0 and Day%100 != 0) or Day%400 ==0:
-        bisextile=True
-    else:
-        bisextile=False
 
 
-def demain(date : str) -> str:
-      
-    
-    udo CODE
-    INPUT DAY
-    INPUT MONTH
-    INPUT YEAR
-    
-    BIXSEXTILE
-    IF a/4==0  and a%100 !=0  or a/400=0
-    is bix = True
-    else 
-    is bix = False
-    
-    IF m 1 . 3 . 5 . 7 . 8 . 10 .12 
-    num day 31 
-    else m = 2 and bix 
-    day = 29
-    elise m = 2 
-    num day = 28
-    else day = 30 
-    
-    
-    if j == day 
-    J = 1 
-    m = m +1 
-    else j + J +1 
-    
-    if m == 13
-    a = a + 1 
-    m = 1
-    
-    
-    print demain  J M A  
-    
-    
+if (Year % 4 == 0 and Year % 100 != 0) or Year % 400 ==0:
+    bisextile=True
+else:
+    bisextile=False
+if Month == 1 or Month == 3 or Month == 5 or Month == 7 or Month == 8 or Month == 10 or Month == 12:
+    number_days = 31 
+elif Month == 2 and bisextile():
+    number_days = 29
+elif Month == 2:
+    number_days = 28
+else:
+    number_days = 30
+if Day == number_days:
+    Day = 1
+    Month = Month + 1
+else:
+    Day = Day + 1
+if Month == 13:
+    Year = Year + 1
+    Month = 1
+print(Day, Month, Year)
+
+#Date = input('Donnez une date au format Jour/Mois/Année JJ/MM/AAA: ')
+#Day_parts = Date.slit('/')
+#Date = Date.fromisoformat(f'{Day_parts[2]}-{Day_parts[1]}-{Day_parts[0]}')
+
+#def demain(date : str) -> str:
+#print(demain.strftime('%d/%m/%Y'))      
