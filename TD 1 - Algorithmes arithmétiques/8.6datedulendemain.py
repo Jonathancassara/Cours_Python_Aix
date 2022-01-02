@@ -7,9 +7,20 @@
 # git@github.com:Jonathancassara/Cours_Python_Aix.git
 #Date du lendemain
 
+Day = int(input("Entrez le jour:"))
+Month = int(input("Entrez le mois:"))
+Year = int(input("Entrez l'année:"))
+def bisextile():
+    if (Day%4 == 0 and Day%100 != 0) or Day%400 ==0:
+        bisextile=True
+    else:
+        bisextile=False
+
+
 def demain(date : str) -> str:
+      
     
-    #Pseudo CODE
+    udo CODE
     INPUT DAY
     INPUT MONTH
     INPUT YEAR
