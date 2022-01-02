@@ -11,32 +11,30 @@ Day = int(input("Entrez le jour:"))
 Month = int(input("Entrez le mois:"))
 Year = int(input("Entrez l'année:"))
 
+def check_format(Day, Month, Year):
+    if Month == 1 or Month == 3 or Month == 5 or Month == 7 or Month == 8 or Month == 10 or Month == 12:
+        max_day_value = 31
+    elif Month == 4 or Month == 6 or Month == 9 or Month == 11:
+        max_day_value = 30
+    elif Year % 4 == 0 and Year % 100 != 0 or Year % 400 == 0:
+        max_day_value = 29
+    else:
+        max_day_value = 28
 
-if (Year % 4 == 0 and Year % 100 != 0) or Year % 400 ==0:
-    bisextile=True
-else:
-    bisextile=False
-if Month == 1 or Month == 3 or Month == 5 or Month == 7 or Month == 8 or Month == 10 or Month == 12:
-    number_days = 31 
-elif Month == 2 and bisextile():
-    number_days = 29
-elif Month == 2:
-    number_days = 28
-else:
-    number_days = 30
-if Day == number_days:
-    Day = 1
-    Month = Month + 1
-else:
-    Day = Day + 1
-if Month == 13:
-    Year = Year + 1
-    Month = 1
-print(Day, Month, Year)
+    if Month < 1 or Month > 12:
+        print("Date is invalid.")
+    elif Day < 1 or Day > max_day_value:
+        print("Date is invalid.")
+    else:
+        print("Valid Date")
 
-#Date = input('Donnez une date au format Jour/Mois/Année JJ/MM/AAA: ')
-#Day_parts = Date.slit('/')
-#Date = Date.fromisoformat(f'{Day_parts[2]}-{Day_parts[1]}-{Day_parts[0]}')
+def bisextile(date : str) ->bool:
+    if (Year % 400 == 0) and (Year % 100 == 0):
+    #if (Year % 4 == 0 and Year % 100 != 0) or Year % 400 == 0:
+        True
+    elif (Year % 4 == 0 ) and ( Year % 100 != 0):
+        True
+    else:
+        False
 
-#def demain(date : str) -> str:
-#print(demain.strftime('%d/%m/%Y'))      
+
