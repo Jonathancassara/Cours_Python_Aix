@@ -8,11 +8,10 @@
 #Date du lendemain
 
 
-
+us_date_style = False
 today = input('Entrez une date au format JJ/MM/AAAA : ')
 
 
-us_date_style = False
 day, month, year = today.split('/')
 if us_date_style:
     day, month = month, day
@@ -51,8 +50,8 @@ elif day < 1 or day > max_day_value:
 else:
     True
     
-
-if tday > max_day_value[month-1]:
+days_per_month = [31,28,31,30,31,30,31,31,30,31,30,31]
+if tday > days_per_month[month-1]:
     if month == 2 and bisextile and tday == 29:
         pass
     else:
