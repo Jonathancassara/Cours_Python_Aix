@@ -34,7 +34,7 @@ if tday > days_per_month[month-1]:
         tday, tmonth = 1, month + 1
 
 if tmonth == 13:
-    # Yup: it must be 1 January of the next year
+    
     tday, tmonth, tyear = 1, 1, year+1
 
 date_tuple = (tmonth, tday, tyear) if us_date_style else (tday, tmonth, tyear)
