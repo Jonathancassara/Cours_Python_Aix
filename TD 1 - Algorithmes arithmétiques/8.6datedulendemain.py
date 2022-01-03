@@ -27,18 +27,6 @@ else:
     
 tday, tmonth, tyear = day + 1, month, year
 
-if tday > days_per_month[month-1]:
-    if month == 2 and bisextile and tday == 29:
-        pass
-    else:
-        tday, tmonth = 1, month + 1
-
-if tmonth == 13:
-    
-    tday, tmonth, tyear = 1, 1, year+1
-
-
-
 if year < 1583 or year > 9999:
     print("Entrez une année comprise entre 1583 et 9999")
     exit()
@@ -59,7 +47,26 @@ elif day < 1 or day > max_day_value:
     print("Merci d'entrer un jour correct")
     exit()
 else:
-    True    
+    True
+    
+if month < 1 or month > 12:
+    print("Merci d'entrer un mois entre 1 et 12")
+    exit()
+
+
+if tday > max_day_value[month-1]:
+    if month == 2 and bisextile and tday == 29:
+        pass
+    else:
+        tday, tmonth = 1, month + 1
+
+if tmonth == 13:
+    
+    tday, tmonth, tyear = 1, 1, year+1
+
+
+
+
 
 
 
