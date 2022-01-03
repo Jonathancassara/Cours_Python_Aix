@@ -7,10 +7,12 @@
 # git@github.com:Jonathancassara/Cours_Python_Aix.git
 #Date du lendemain
 
-us_date_style = False
-days_per_month = [31,28,31,30,31,30,31,31,30,31,30,31]
+
+
 today = input('Entrez une date au format JJ/MM/AAAA : ')
 
+
+us_date_style = False
 day, month, year = today.split('/')
 if us_date_style:
     day, month = month, day
@@ -41,7 +43,7 @@ else:
     max_day_value = 28
 
 if month < 1 or month > 12:
-    print("Merci d'entrer un jour correct")
+    print("Merci d'entrer un mois correct")
     exit()
 elif day < 1 or day > max_day_value:
     print("Merci d'entrer un jour correct")
@@ -49,10 +51,6 @@ elif day < 1 or day > max_day_value:
 else:
     True
     
-if month < 1 or month > 12:
-    print("Merci d'entrer un mois entre 1 et 12")
-    exit()
-
 
 if tday > max_day_value[month-1]:
     if month == 2 and bisextile and tday == 29:
@@ -63,13 +61,6 @@ if tday > max_day_value[month-1]:
 if tmonth == 13:
     
     tday, tmonth, tyear = 1, 1, year+1
-
-
-
-
-
-
-
 
 date_tuple = (tmonth, tday, tyear) if us_date_style else (tday, tmonth, tyear)
 tomorrow = '{:d}/{:d}/{:d}'.format(*date_tuple)
